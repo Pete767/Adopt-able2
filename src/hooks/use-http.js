@@ -22,7 +22,13 @@ const useHttp = () => {
 
     const getToken = async () => {
         try {
-            const response = await fetch('/.netlify/functions/petfinderProxy');
+            const response = await fetch('https://api.petfinder.com/v2/oauth2/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_API}&client_secret=${process.env.REACT_APP_PETFINDER_SECRET}`,
+        });
             if (!response.ok) {
                 throw new Error('Could not fetch token from petfinder.');
             }
@@ -42,7 +48,7 @@ const useHttp = () => {
             setError(error.message)
         }
 
-    }
+    };
 
     const fetchData = useCallback(async (url) => {
         setIsLoading(true);
@@ -65,9 +71,8 @@ const useHttp = () => {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${userToken}`,
-                }
-            }
-            );
+                },
+            });
             const data = await response.json();
 
             if (!response.ok) {
