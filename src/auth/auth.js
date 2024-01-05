@@ -71,15 +71,15 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
             }));
             const response = await fetch(url, {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: 
                     `email: ${enteredEmail},
                     password: ${enteredPassword},
                     returnSecureToken: true`,
-        
-                headers: {
-                    'Content-Type': 'application/json',
                 },
-            });
+            );
 
 
             if (!response.ok) {
