@@ -71,11 +71,11 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
             }));
             const response = await fetch(url, {
                 method: 'POST',
-                body: JSON.stringify({
-                    email: enteredEmail,
-                    password: enteredPassword,
-                    returnSecureToken: true,
-                }),
+                body: 
+                    `email: ${enteredEmail},
+                    password: ${enteredPassword},
+                    returnSecureToken: true`,
+        
                 headers: {
                     'Content-Type': 'application/json',
                 },
