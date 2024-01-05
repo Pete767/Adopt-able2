@@ -61,9 +61,9 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
     return async (dispatch) => {
         let url;
         if (register) {
-            url = IDENTITY_SIGNUP
+            url = process.env.IDENTITY_SIGNUP
         } else {
-            url = IDENTITY_SIGNIN
+            url = process.env.IDENTITY_SIGNIN
         }
 
         try {
