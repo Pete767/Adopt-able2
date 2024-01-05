@@ -22,7 +22,7 @@ const useHttp = () => {
 
     const getToken = async () => {
         try {
-            const response = await fetch('https://api.petfinder.com/v2/oauth2/token', {
+            const response = await fetch('/.netlify/functions/petfinderProxy', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -67,7 +67,8 @@ const useHttp = () => {
         }
 
         try {
-            const response = await fetch(url, {
+            const response = await fetch('/.netlify/functions/petfinderProxy', {
+                method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${userToken}`,
