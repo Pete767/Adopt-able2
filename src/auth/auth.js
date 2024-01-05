@@ -74,12 +74,12 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: 
-                    `email: ${enteredEmail},
-                    password: ${enteredPassword},
-                    returnSecureToken: true`,
-                },
-            );
+                body: JSON.stringify({
+                    'email': enteredEmail,
+                    'password': enteredPassword,
+                    'returnSecureToken': true
+                }),
+        });
 
 
             if (!response.ok) {
