@@ -27,7 +27,10 @@ const useHttp = () => {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_API_KEY}&client_secret=${process.env.REACT_APP_PETFINDER_SECRET}`,
+            body: JSON.stringify({
+                 grant_type: 'client_credentials',
+                 client_id: process.env.REACT_APP_PETFINDER_API_KEY,client_secret: process.env.REACT_APP_PETFINDER_SECRET
+            })
         });
             if (!response.ok) {
                 throw new Error('Could not fetch token from petfinder.');
