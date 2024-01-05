@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { createClient } from 'petfinder';
+import { createClient } from 'petfinder-js';
 
 const useHttp = () => {
     const [isLoading, setIsLoading] = useState(false);
