@@ -60,6 +60,7 @@ const useHttp = () => {
         setError(null);
 
         if (!userToken) {
+            // eslint-disable-next-line
             userToken = await getToken();
         }
         else {
