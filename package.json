@@ -1,4 +1,5 @@
 {
+    "proxy": "http://api.petfinder.com",
     "homepage": ".",
     "name": "petfinder",
     "version": "0.1.0",
