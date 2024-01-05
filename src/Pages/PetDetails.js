@@ -16,7 +16,7 @@ function PetDetails() {
     let petImages = [];
 
     useEffect(() => {
-        petAttributes = [];
+        let petAttributes = [];
         console.log('FETCH DATA WITH ', petId);
         window.scrollTo(0, 0);
         fetchData(`https://api.petfinder.com/v2/animals/${petId}`);
@@ -41,7 +41,8 @@ function PetDetails() {
                 original: photo.full,
                 thumbnail: photo.small
             });
-        })
+            return null;
+        });
     }
 
     return (<Fragment>
@@ -61,7 +62,7 @@ function PetDetails() {
                     {!isLoading &&
                         <>
                             <div className='rounded-lg'>
-                                {result?.animal.primary_photo_cropped.medium && <img src={result.animal.primary_photo_cropped.medium} className='md:max-w-[320px] rounded-lg mx-auto mt-10 lg:mt-0' />}
+                                {result?.animal.primary_photo_cropped.medium && <img src={result.animal.primary_photo_cropped.medium} className='md:max-w-[320px] rounded-lg mx-auto mt-10 lg:mt-0' alt="" />}
                             </div>
                             <div className='ml-0 lg:ml-10'>
                                 <div className='flex flex-col justify-between h-full'>
@@ -110,6 +111,7 @@ function PetDetails() {
                                             <a
                                                 href={result?.animal.url}
                                                 target='_blank'
+                                                rel='noreferrer'
                                                 className='py-3 px-3 bg-[#6504b5] text-white rounded-md drop-shadow-sm inline-block font-medium hover:bg-[#2e0152] hover:drop-shadow-md transition-all'>
                                                 <div className='flex'>
                                                     See Details On Petfinder

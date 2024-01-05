@@ -93,7 +93,7 @@ const SearchForm = () => {
                         <div className="relative w-full md:min-w-[20%] py-4 md:py-0">
                             {result && pageInFocus &&
                                 <p onClick={togglePetList} className="capitalize pr-3 font-medium flex items-center cursor-pointer">
-                                    {PET_IMAGES[selectedPet.image] && <img src={`${PET_IMAGES[selectedPet.image]}`} className='h-[48px] pr-3' />}
+                                    {PET_IMAGES[selectedPet.image] && <img src={`${PET_IMAGES[selectedPet.image]}`} className='h-[48px] pr-3' alt="" />}
 
                                     {selectedPet.friendlyName && selectedPet.friendlyName}
                                     {
@@ -118,7 +118,7 @@ const SearchForm = () => {
                                             data-image={petImage}
                                             className={`${petName.toLowerCase() == selectedPet.friendlyName ? 'text-white font-medium bg-orange-500 hover:text-white' : 'text-gray-500 odd:bg-zinc-50 even:bg-orange-50 hover:text-orange-600'} 
                                     flex items-center  cursor-pointer `}>
-                                            <img src={`${PET_IMAGES[petImage] ? PET_IMAGES[petImage] : ''}`} className='h-[50px] pr-3' />
+                                            <img src={`${PET_IMAGES[petImage] ? PET_IMAGES[petImage] : ''}`} className='h-[50px] pr-3' alt="" />
                                             {petName}
                                         </li>
                                     })

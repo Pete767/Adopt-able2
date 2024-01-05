@@ -16,7 +16,7 @@ function Pagination({ currentPage, totalPages, getNextPage }) {
                 <ChevronLeftIcon className={currentPage > 1 ? 'fill-gray-900 cursor-pointer hover:fill-orange-500' : 'fill-gray-500'} />
             </div>
             <div key={0}
-                className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${currentPage == 1 ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
+                className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${currentPage === 1 ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
                 onClick={() => { currentPage != 1 && getNextPage(1) }}
             >
                 {1}
@@ -26,7 +26,7 @@ function Pagination({ currentPage, totalPages, getNextPage }) {
             {currentPaginationGroup.map(page => {
                 return (
                     <div key={page}
-                        className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${page == currentPage ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
+                        className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${page === currentPage ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
                         onClick={() => { currentPage != page && getNextPage(page) }}
                     >
                         {page}
@@ -37,7 +37,7 @@ function Pagination({ currentPage, totalPages, getNextPage }) {
 
             {totalPages > 1 &&
                 <div key={totalPages}
-                    className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${currentPage == totalPages ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
+                    className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${currentPage === totalPages ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
                     onClick={() => { currentPage != totalPages && getNextPage(totalPages) }}
                 >
                     {totalPages}

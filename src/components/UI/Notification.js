@@ -13,7 +13,7 @@ function Notification({ status, title, message }) {
 
     const closeNotification = useCallback(() => {
         dispatch(uiActions.showNotification('reset'))
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         const notificationTimer = setTimeout(closeNotification, 10000);
