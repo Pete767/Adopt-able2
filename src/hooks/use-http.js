@@ -24,7 +24,9 @@ const useHttp = () => {
         try {
             const response = await fetch('https://api.petfinder.com/v2/oauth2/token/', {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
