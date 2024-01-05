@@ -22,7 +22,7 @@ const useHttp = () => {
 
     const getToken = async () => {
         try {
-            const response = await fetch('/api/petfinderProxy', {
+            const response = await fetch('/.netlify/functions/petfinderProxy', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -67,7 +67,7 @@ const useHttp = () => {
         }
 
         try {
-            const response = await fetch('/api/petfinderProxy', {
+            const response = await fetch('/.netlify/functions/petfinderProxy', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
