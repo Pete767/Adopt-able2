@@ -2,24 +2,24 @@ import { HeartIcon, RefreshIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { uiActions } from '../../store/ui-slice';
-import { addToFavourites, deleteFBUserFavourite } from '../../lib/api';
+import { addToFavorites, deleteFBUserFavourite } from '../../lib/api';
 import { useState } from 'react';
 import { userActions } from '../../store/user-slice';
 
 const AnimalCard = ({ loading, pet, petId, image, name, breeds, age, gender, distance }) => {
     const userLoggedIn = useSelector(state => state.user.userIsLoggedIn);
     const userId = useSelector(state => state.user.userId);
-    const userFavourites = useSelector(state => state.user.userFavourites);
+    const userFavorites = useSelector(state => state.user.userFavorites);
     const [addingFav, setAddingFav] = useState(false);
 
     const dispatch = useDispatch();
 
 
     const isthisFavPet = () => {
-        return !!(userFavourites.find(favourites => favourites.petId === petId));
+        return !!(userFavorites.find(favorites => favorites.petId === petId));
     }
 
-    const addToFavouritesHandler = () => {
+    const addToFavoritesHandler = () => {
         if (!userLoggedIn) {
             dispatch(uiActions.toggleLogin());
         }
@@ -28,7 +28,7 @@ const AnimalCard = ({ loading, pet, petId, image, name, breeds, age, gender, dis
             const existFavPet = isthisFavPet();
 
             if (existFavPet) {
-                const petToDelete = userFavourites.find(favourites => favourites.petId === petId);
+                const petToDelete = userFavorites.find(favorites => favorites.petId === petId);
                 dispatch(userActions.deleteUserFavourite(petToDelete.fbId));
                 deleteFBUserFavourite({
                     fbId: petToDelete.fbId,
@@ -38,7 +38,7 @@ const AnimalCard = ({ loading, pet, petId, image, name, breeds, age, gender, dis
             }
             else {
                 const addPet = async () => {
-                    const fbId = await addToFavourites({
+                    const fbId = await addToFavorites({
                         userId,
                         petId,
                         pet,
@@ -49,7 +49,7 @@ const AnimalCard = ({ loading, pet, petId, image, name, breeds, age, gender, dis
                         age,
                         distance
                     });
-                    dispatch(userActions.setUserFavourites([{
+                    dispatch(userActions.setUserFavorites([{
                         fbId: fbId,
                         petId,
                         pet,
@@ -90,7 +90,7 @@ const AnimalCard = ({ loading, pet, petId, image, name, breeds, age, gender, dis
             <button
                 type='button'
                 className={`absolute top-0 right-0 bg-black bg-opacity-50 p-1 m-2 rounded shadow`}
-                onClick={addToFavouritesHandler}
+                onClick={addToFavoritesHandler}
                 disabled={addingFav === true ? true : false}
             >
                 {!addingFav &&

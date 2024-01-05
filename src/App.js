@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home';
 import Search from './Pages/Search';
 import PetDetails from './Pages/PetDetails';
-import Favourites from './Pages/Favourites';
+import Favorites from './Pages/Favorites';
 import { useDispatch, useSelector } from 'react-redux';
 import Notification from './components/UI/Notification';
 import Login from './components/Login/Login';
@@ -13,13 +13,13 @@ function App() {
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.ui.notification);
   const showLogin = useSelector(state => state.ui.showLogin);
-  const userFavourites = useSelector(state => state.user.userFavourites);
+  const userFavorites = useSelector(state => state.user.userFavorites);
 
   useEffect(() => {
-    if (userFavourites?.length) {
-      localStorage.setItem('favouritePets', JSON.stringify(userFavourites));
+    if (userFavorites?.length) {
+      localStorage.setItem('favouritePets', JSON.stringify(userFavorites));
     }
-  }, [userFavourites]);
+  }, [userFavorites]);
 
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/search/:pet/:location' element={<Search />}></Route>
         <Route path='/:pet/:petId' element={<PetDetails />} />
-        <Route path='/favourites' element={<Favourites />} />
+        <Route path='/favorites' element={<Favorites />} />
       </Routes>
     </Fragment>
   );

@@ -4,8 +4,8 @@ import AnimalCard from "../components/AnimalCard/AnimalCard";
 import Navigation from "../components/UI/Navigation";
 import { uiActions } from "../store/ui-slice";
 
-const Favourites = () => {
-    const userFavourites = useSelector(state => state.user.userFavourites);
+const Favorites = () => {
+    const userFavorites = useSelector(state => state.user.userFavorites);
     const userLoggedIn = useSelector(state => state.user.userIsLoggedIn);
     const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ const Favourites = () => {
         </div>
         <div className='mt-16 px-4 md:px-16 xl:px-24'>
             {userLoggedIn &&
-                userFavourites?.length < 1 && <p className="text-center text-slate-700">Your haven't added any pets to your list.</p>}
+                userFavorites?.length < 1 && <p className="text-center text-slate-700">Your haven't added any pets to your list.</p>}
             {!userLoggedIn &&
                 <div className="text-center rounded-sm bg-white shadow-lg p-5 w-[450px] max-w-[80%] mx-auto text-slate-700 border-2 border-orange-400">
                     <h1 className="font-semibold text-lg sm:text-[2rem] mb-2 sm:mb-5">Please Login To Continue</h1>
@@ -30,7 +30,7 @@ const Favourites = () => {
             }
             {userLoggedIn &&
                 <div className='flex flex-row flex-wrap justify-center md:justify-between'>
-                    {[...userFavourites]?.reverse()?.map(animal => {
+                    {[...userFavorites]?.reverse()?.map(animal => {
                         return (
                             <AnimalCard
                                 key={animal.petId}
@@ -52,4 +52,4 @@ const Favourites = () => {
     </Fragment>)
 }
 
-export default Favourites;
+export default Favorites;

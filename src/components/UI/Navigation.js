@@ -25,7 +25,7 @@ const Navigation = () => {
                         <NavLink to='/' className='hover:text-amber-200'>Home</NavLink>
                     </li>
                     <li className='pr-4'>
-                        <NavLink to='/favourites' className={({ isActive }) => (isActive ? "text-amber-200" : 'hover:text-amber-200')}>Favourites</NavLink>
+                        <NavLink to='/favorites' className={({ isActive }) => (isActive ? "text-amber-200" : 'hover:text-amber-200')}>Favorites</NavLink>
                     </li>
                     <li className=' ml-auto'>
                         <button className='font-medium hover:text-amber-200' onClick={toggleLogin}>

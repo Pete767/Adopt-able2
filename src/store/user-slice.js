@@ -7,7 +7,7 @@ const initialState = {
     userEmail: '',
     userId: '',
     userIsLoggedIn: false,
-    userFavourites: []
+    userFavorites: []
 }
 
 const userSlice = createSlice({
@@ -30,20 +30,20 @@ const userSlice = createSlice({
             state.loginTokenExpiry = '';
             state.userId = '';
             state.userIsLoggedIn = false;
-            state.userFavourites = [];
+            state.userFavorites = [];
         },
-        setUserFavourites(state, action) {
-            const currentFav = state.userFavourites;
+        setUserFavorites(state, action) {
+            const currentFav = state.userFavorites;
             const newItems = action.payload;
-            state.userFavourites = [...currentFav, ...newItems];
+            state.userFavorites = [...currentFav, ...newItems];
         },
         deleteUserFavourite(state, action) {
             const fbId = action.payload;
             console.log('pet Id to delete: ', fbId);
-            const newFavourites = state.userFavourites.filter(favItem => {
+            const newFavorites = state.userFavorites.filter(favItem => {
                 return favItem.fbId !== fbId;
             });
-            state.userFavourites = newFavourites;
+            state.userFavorites = newFavorites;
         }
     }
 });

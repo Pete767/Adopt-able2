@@ -15,9 +15,9 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 const FIREBASE_DOMAIN = db.ref();
 
-export async function addToFavourites(petData) {
+export async function addToFavorites(petData) {
 
-    const response = await fetch(`${FIREBASE_DOMAIN}/favourites/${petData.userId}.json`, {
+    const response = await fetch(`${FIREBASE_DOMAIN}/favorites/${petData.userId}.json`, {
         method: 'POST',
         body: JSON.stringify({
             petId: petData.petId,
@@ -42,15 +42,15 @@ export async function addToFavourites(petData) {
     return data.name;
 }
 
-export async function getUserFavourites(userId) {
-    const response = await fetch(`${FIREBASE_DOMAIN}/favourites/${userId}.json`);
+export async function getUserFavorites(userId) {
+    const response = await fetch(`${FIREBASE_DOMAIN}/favorites/${userId}.json`);
     const data = await response.json();
 
     if (!response.ok) {
-        throw new Error('Could not get favourites from database');
+        throw new Error('Could not get favorites from database');
     }
 
-    const userFavourites = [];
+    const userFavorites = [];
 
     for (const key in data) {
         const favObj = {
@@ -64,15 +64,15 @@ export async function getUserFavourites(userId) {
             age: data[key].age,
             distance: data[key].distance
         }
-        userFavourites.push(favObj);
+        userFavorites.push(favObj);
     }
 
-    return userFavourites;
+    return userFavorites;
 }
 
 export async function deleteFBUserFavourite(petData) {
 
-    const response = await fetch(`${FIREBASE_DOMAIN}/favourites/${petData.userId}/${petData.fbId}.json`, {
+    const response = await fetch(`${FIREBASE_DOMAIN}/favorites/${petData.userId}/${petData.fbId}.json`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

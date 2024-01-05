@@ -1,4 +1,4 @@
-import { getUserFavourites } from "../lib/api";
+import { getUserFavorites } from "../lib/api";
 import { uiActions } from "../store/ui-slice";
 import { userActions } from "../store/user-slice";
 
@@ -44,7 +44,7 @@ export const checkLogin = () => {
             }));
 
             if (localFavouritePets?.length) {
-                dispatch(userActions.setUserFavourites(localFavouritePets));
+                dispatch(userActions.setUserFavorites(localFavouritePets));
             }
 
             logoutTimer = setTimeout(() => {
@@ -102,14 +102,14 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
 
             console.log('Login Token Expiry at: ', new Date(loginTokenExpiry).toLocaleTimeString("en-US"));
 
-            const savedUserFavourites = await getUserFavourites(userId);
+            const savedUserFavorites = await getUserFavorites(userId);
 
             dispatch(userActions.setLoginToken({
                 tokenExpiry: loginTokenExpiry,
                 userId: userId
             }));
 
-            dispatch(userActions.setUserFavourites(savedUserFavourites));
+            dispatch(userActions.setUserFavorites(savedUserFavorites));
 
             localStorage.setItem('petfinderUser',
                 JSON.stringify({
@@ -118,7 +118,7 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
                     id: userId
                 })
             );
-            localStorage.setItem('favouritePets', JSON.stringify(savedUserFavourites));
+            localStorage.setItem('favouritePets', JSON.stringify(savedUserFavorites));
 
             const remainingTime = calculateRemainingTime(loginTokenExpiry);
 
