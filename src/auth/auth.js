@@ -2,8 +2,8 @@ import { getUserFavorites } from "../lib/api";
 import { uiActions } from "../store/ui-slice";
 import { userActions } from "../store/user-slice";
 
-const IDENTITY_SIGNIN = process.env.IDENTITY_SIGNIN;
-const IDENTITY_SIGNUP = process.env.IDENTITY_SIGNUP
+const IDENTITY_SIGNIN = process.env.REACT_APP_IDENTITY_SIGNIN;
+const IDENTITY_SIGNUP = process.env.REACT_APP_IDENTITY_SIGNUP;
 
 const currentTime = new Date().getTime();
 let logoutTimer;
@@ -61,9 +61,9 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
     return async (dispatch) => {
         let url;
         if (register) {
-            url = process.env.IDENTITY_SIGNUP
+            url = IDENTITY_SIGNUP;
         } else {
-            url = process.env.IDENTITY_SIGNIN
+            url = IDENTITY_SIGNIN;
         }
 
         try {
