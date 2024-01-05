@@ -24,16 +24,10 @@ const useHttp = () => {
         try {
             const response = await fetch('https://api.petfinder.com/v2/oauth2/token/', {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: {
-                 grant_type: 'client_credentials',
-                 client_id: process.env.REACT_APP_PETFINDER_API_KEY,client_secret: process.env.REACT_APP_PETFINDER_SECRET
-            }
+            body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_API_KEY}&client_secret=${process.env.REACT_APP_PETFINDER_SECRET}`
         });
             if (!response.ok) {
                 throw new Error('Could not fetch token from petfinder.');
