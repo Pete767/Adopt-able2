@@ -1,4 +1,5 @@
 {
+    "type": "module",
     "homepage": ".",
     "name": "petfinder",
     "version": "0.1.0",
