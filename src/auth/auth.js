@@ -61,9 +61,9 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
     return async (dispatch) => {
         let url;
         if (register) {
-            url = IDENTITY_SIGNUP;
+            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDp8XD9f9y452ZOi7VzCKXwuAMhs0wv0Yk';
         } else {
-            url = IDENTITY_SIGNIN;
+            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDp8XD9f9y452ZOi7VzCKXwuAMhs0wv0Yk';
         }
 
         try {
