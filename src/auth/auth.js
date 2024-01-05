@@ -84,8 +84,9 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
 
 
             if (!response.ok) {
+                const errorMessage = await response.text();
                 if (register) {
-                    throw new Error('There was an error creating your account. Please try again!');
+                    throw new Error(`API Error: ${response.status} - ${errorMessage}`);
                 }
                 else {
                     throw new Error('There was an error trying login to your account. Please try again!');
