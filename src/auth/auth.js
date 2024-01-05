@@ -2,6 +2,9 @@ import { getUserFavourites } from "../lib/api";
 import { uiActions } from "../store/ui-slice";
 import { userActions } from "../store/user-slice";
 
+const IDENTITY_SIGNIN = process.env.IDENTITY_SIGNIN;
+const IDENTITY_SIGNUP = process.env.IDENTITY_SIGNUP
+
 const currentTime = new Date().getTime();
 let logoutTimer;
 
@@ -58,9 +61,9 @@ export const authenticateUser = (enteredEmail, enteredPassword, register) => {
     return async (dispatch) => {
         let url;
         if (register) {
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyABbq2O-WkgkBDh-LiIJKNNJGWWUu1C-wU'
+            url = IDENTITY_SIGNUP
         } else {
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyABbq2O-WkgkBDh-LiIJKNNJGWWUu1C-wU'
+            url = IDENTITY_SIGNIN
         }
 
         try {
