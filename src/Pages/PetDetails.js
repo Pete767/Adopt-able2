@@ -9,7 +9,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import { ClipboardIcon, ExternalLinkIcon, InformationCircleIcon, LocationMarkerIcon, MailIcon, MenuAlt1Icon, PhoneIcon, RefreshIcon } from '@heroicons/react/solid';
 
 function PetDetails() {
-    const { isLoading, error, fetchData, result } = useHttp();
+    const { isLoading, fetchData, result } = useHttp();
     const { petId } = useParams();
     const navigation = useNavigate();
     let petAttributes = [];
