@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { createClient } from 'petfinder';
 
 const useHttp = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -7,6 +8,11 @@ const useHttp = () => {
     const [result, setResult] = useState(null);
     let userToken = '';
     let userTokenExpiry = useSelector(state => state.user.userTokenExpiry);
+
+    const client = createClient({
+        apiKey: process.env.REACT_APP_PETFINDER_API,
+        secret: process.env.REACT_APP_PETFINDER_SECRET,
+    });
 
     useEffect(() => {
         const localUserItems = localStorage.getItem("petfinder");
@@ -22,18 +28,7 @@ const useHttp = () => {
 
     const getToken = async () => {
         try {
-            const response = await fetch('/.netlify/functions/petfinderProxy', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_API}&client_secret=${process.env.REACT_APP_PETFINDER_SECRET}`,
-        });
-            if (!response.ok) {
-                throw new Error('Could not fetch token from petfinder.');
-            }
-
-            const data = await response.json();
+            const data = await client.authenticate();      
             const tokenExpiry = new Date().getTime() + data.expires_in * 1000;
 
             localStorage.setItem('petfinder',
@@ -67,23 +62,7 @@ const useHttp = () => {
         }
 
         try {
-            const response = await fetch('/.netlify/functions/petfinderProxy', {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${userToken}`,
-                },
-            });
-            const data = await response.json();
-
-            if (!response.ok) {
-                let errorTitle = data.title;
-                if (data.status === 400 && data['invalid-params'][0].message) {
-                    errorTitle = data['invalid-params'][0].message;
-                }
-                throw new Error('Error fetching data from PETFINDER! ' + errorTitle);
-            }
-
+            const data = await client.animal.search();
             setResult(data);
         }
         catch (error) {
