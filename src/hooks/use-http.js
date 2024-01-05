@@ -68,7 +68,7 @@ const useHttp = () => {
 
         try {
             const response = await fetch('/.netlify/functions/petfinderProxy', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${userToken}`,
