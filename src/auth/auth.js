@@ -1,7 +1,6 @@
 import { getUserFavorites } from "../lib/api";
 import { uiActions } from "../store/ui-slice";
 import { userActions } from "../store/user-slice";
-import fetch from "node-fetch"
 
 const currentTime = new Date().getTime();
 let logoutTimer;
