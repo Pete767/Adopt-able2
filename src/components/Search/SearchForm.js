@@ -116,7 +116,7 @@ const SearchForm = () => {
                                             data-name={petName.toLowerCase()}
                                             data-pet={pet}
                                             data-image={petImage}
-                                            className={`${petName.toLowerCase() == selectedPet.friendlyName ? 'text-white font-medium bg-orange-500 hover:text-white' : 'text-gray-500 odd:bg-zinc-50 even:bg-orange-50 hover:text-orange-600'} 
+                                            className={`${petName.toLowerCase() === selectedPet.friendlyName ? 'text-white font-medium bg-orange-500 hover:text-white' : 'text-gray-500 odd:bg-zinc-50 even:bg-orange-50 hover:text-orange-600'} 
                                     flex items-center  cursor-pointer `}>
                                             <img src={`${PET_IMAGES[petImage] ? PET_IMAGES[petImage] : ''}`} className='h-[50px] pr-3' alt="" />
                                             {petName}

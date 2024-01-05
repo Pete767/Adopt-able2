@@ -17,7 +17,7 @@ function Pagination({ currentPage, totalPages, getNextPage }) {
             </div>
             <div key={0}
                 className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${currentPage === 1 ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
-                onClick={() => { currentPage != 1 && getNextPage(1) }}
+                onClick={() => { currentPage !== 1 && getNextPage(1) }}
             >
                 {1}
             </div>
@@ -27,18 +27,18 @@ function Pagination({ currentPage, totalPages, getNextPage }) {
                 return (
                     <div key={page}
                         className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${page === currentPage ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
-                        onClick={() => { currentPage != page && getNextPage(page) }}
+                        onClick={() => { currentPage !== page && getNextPage(page) }}
                     >
                         {page}
                     </div>
                 )
             })}
-            {lastIndex != totalPages - 1 && <div className={`p-2 m-1 h-10 w-10 rounded-lg text-center bg-white`}>...</div>}
+            {lastIndex !== totalPages - 1 && <div className={`p-2 m-1 h-10 w-10 rounded-lg text-center bg-white`}>...</div>}
 
             {totalPages > 1 &&
                 <div key={totalPages}
                     className={`p-2 m-1 h-10 w-10 rounded-lg font-medium text-center border-2 ${currentPage === totalPages ? 'bg-orange-500 text-white drop-shadow-xl border-white' : 'bg-white hover:bg-orange-500 hover:text-white cursor-pointer drop-shadow-sm hover:drop-shadow-lg'}`}
-                    onClick={() => { currentPage != totalPages && getNextPage(totalPages) }}
+                    onClick={() => { currentPage !== totalPages && getNextPage(totalPages) }}
                 >
                     {totalPages}
                 </div>

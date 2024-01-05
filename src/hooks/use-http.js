@@ -13,8 +13,9 @@ const useHttp = () => {
 
         if (localUserItems) {
             const parsedLocalUserItems = JSON.parse(localUserItems);
-
+// eslint-disable-next-line
             userToken = parsedLocalUserItems.token;
+            // eslint-disable-next-line
             userTokenExpiry = parsedLocalUserItems.tokenExpiry;
         }
     }, []);
@@ -64,6 +65,7 @@ const useHttp = () => {
         else {
             const currentTime = new Date().getTime();
             if (currentTime > userTokenExpiry) {
+                // eslint-disable-next-line
                 userToken = await getToken();
             }
         }
@@ -80,7 +82,7 @@ const useHttp = () => {
 
             if (!response.ok) {
                 let errorTitle = data.title;
-                if (data.status == 400 && data['invalid-params'][0].message) {
+                if (data.status === 400 && data['invalid-params'][0].message) {
                     errorTitle = data['invalid-params'][0].message;
                 }
                 throw new Error('Error fetching data from PETFINDER! ' + errorTitle);

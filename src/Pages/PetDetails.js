@@ -16,6 +16,7 @@ function PetDetails() {
     let petImages = [];
 
     useEffect(() => {
+        // eslint-disable-next-line
         let petAttributes = [];
         console.log('FETCH DATA WITH ', petId);
         window.scrollTo(0, 0);
@@ -185,6 +186,7 @@ function PetDetails() {
                                     <div>
                                         <ul className='mb-4 ml-8'>
                                             {petAttributes &&
+                                            // eslint-disable-next-line
                                                 petAttributes.map((attribute) => {
                                                     if (attribute.value != null)
                                                         return (
